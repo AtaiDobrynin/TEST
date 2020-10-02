@@ -54,3 +54,10 @@ enemies:
     intelligence: 50
     luck: 5
     experience: 1000
+  goblin:
+    sprite: [goblin.png]
+    strength: 35
+    endurance: 35
+    intelligence: 5
+    luck: 1
+    experience: 700
