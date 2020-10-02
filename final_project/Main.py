@@ -30,7 +30,7 @@ def create_game(sprite_size, is_new):
     try:
         pygame.mixer.init()
         pygame.mixer.music.load('music.mp3')
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(-1)
     except pygame.error:
         print(':(')
 
