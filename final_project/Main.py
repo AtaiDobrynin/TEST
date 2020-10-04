@@ -45,8 +45,8 @@ def create_game(sprite_size, is_new):
                                 SE.ProgressBar((640, 120), (640, 0),
                                                SE.InfoWindow((160, 600), (50, 50),
                                                              SE.HelpWindow((700, 500), pygame.SRCALPHA, (0, 0),
-                                                                           SE.MiniMap((120, 120), pygame.SRCALPHA,
-                                                                                      (50, 50), SE.ScreenHandle((0, 0))
+                                                                           SE.MiniMap((180, 50), pygame.SRCALPHA,
+                                                                                      (180, 50), SE.ScreenHandle((0, 0))
                                                                                       )))))
 
     else:
