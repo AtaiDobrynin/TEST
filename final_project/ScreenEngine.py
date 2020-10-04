@@ -205,8 +205,7 @@ class HelpWindow(ScreenHandle):
         self.data.append(["Num+", "Zoom +"])
         self.data.append(["Num-", "Zoom -"])
         self.data.append([" R ", "Restart Game"])
-
-    # FIXME You can add some help information
+        self.data.append([" M ", "Show/hide minimap"])
 
     def connect_engine(self, engine):
         self.engine = engine
@@ -228,5 +227,38 @@ class HelpWindow(ScreenHandle):
                           (50, 50 + 30 * i))
                 self.blit(font2.render(text[1], True, ((128, 128, 255))),
                           (150, 50 + 30 * i))
+
+        super().draw(canvas)
+
+
+class MiniMap(ScreenHandle):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.size = 5
+        self.alpha = 0
+        self.colors = {"hero": (255, 0, 0),
+                       "object": (255, 255, 0)}
+
+    def connect_engine(self, engine):
+        self.engine = engine
+        super().connect_engine(engine)
+
+    def canvas_pos(self, args):
+        return args[0] * self.size, args[1] * self.size
+
+    def draw_object(self, pos, color):
+        x, y = self.canvas_pos(pos)
+        pygame.draw.rect(self, color, (x, y, self.size, self.size))
+
+    def draw(self, canvas):
+        self.alpha = 0
+        if self.engine.show_minimap:
+            self.alpha = 128
+        self.fill((0, 0, 0, self.alpha))
+
+        if self.engine.show_minimap:
+            self.draw_object(self.engine.hero.position, self.colors["hero"])
+            for obj in self.engine.objects:
+                self.draw_object(obj.position, self.colors["object"])
 
         super().draw(canvas)

@@ -25,6 +25,11 @@ ally:
     action: restore_hp
     min-count: 0
     max-count: 3
+  mage:
+    sprite: [mage.png]
+    action: apply_mage
+    min-count: 0
+    max-count: 2
 enemies:
   rat:
     sprite: [rat.png]

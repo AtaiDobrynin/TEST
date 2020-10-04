@@ -170,6 +170,12 @@ class Blessing(Effect):
         super().apply_effect()
 
 
+class Mage(Effect):
+    def apply_effect(self):
+        self.stats['intelligence'] += 4
+        super().apply_effect()
+
+
 class Weakness(Effect):
     def apply_effect(self):
         self.stats["strength"] -= 2

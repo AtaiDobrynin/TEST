@@ -10,7 +10,7 @@ SCREEN_DIM = (800, 600)
 
 pygame.init()
 gameDisplay = pygame.display.set_mode(SCREEN_DIM)
-pygame.display.set_caption("MyRPG")
+pygame.display.set_caption("Dungeons & Dungeons")
 KEYBOARD_CONTROL = True
 
 if not KEYBOARD_CONTROL:
@@ -45,9 +45,9 @@ def create_game(sprite_size, is_new):
                                 SE.ProgressBar((640, 120), (640, 0),
                                                SE.InfoWindow((160, 600), (50, 50),
                                                              SE.HelpWindow((700, 500), pygame.SRCALPHA, (0, 0),
-                                                                           SE.ScreenHandle(
-                                                                               (0, 0))
-                                                                           ))))
+                                                                           SE.MiniMap((120, 120), pygame.SRCALPHA,
+                                                                                      (50, 50), SE.ScreenHandle((0, 0))
+                                                                                      )))))
 
     else:
         engine.sprite_size = sprite_size
@@ -72,6 +72,8 @@ while engine.working:
             if event.type == pygame.QUIT:
                 engine.working = False
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_m:
+                    engine.show_minimap = not engine.show_minimap
                 if event.key == pygame.K_h:
                     engine.show_help = not engine.show_help
                 if event.key == pygame.K_KP_PLUS:

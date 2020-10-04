@@ -37,6 +37,16 @@ def restore_hp(engine, hero):
     engine.notify("HP restored")
 
 
+def apply_mage(engine, hero):
+    if random.randint(1, 10) == 1:
+        engine.score -= 1
+        engine.notify("You are so stupid, ha-ha!")
+    else:
+        engine.score += 0.1
+        engine.hero = Objects.Mage(hero)
+        engine.notify("Mage applied")
+
+
 def apply_blessing(engine, hero):
     if hero.gold >= int(20 * 1.5 ** engine.level) - 2 * hero.stats["intelligence"]:
         engine.score += 0.2
@@ -397,7 +407,8 @@ def service_init(sprite_size, full=True):
                            'add_gold': add_gold,
                            'apply_blessing': apply_blessing,
                            'remove_effect': remove_effect,
-                           'restore_hp': restore_hp}
+                           'restore_hp': restore_hp,
+                           'apply_mage': apply_mage}
 
     for obj in object_list_prob['objects']:
         prop = object_list_prob['objects'][obj]
