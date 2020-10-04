@@ -31,8 +31,9 @@ def create_game(sprite_size, is_new):
         pygame.mixer.init()
         pygame.mixer.music.load('music.mp3')
         pygame.mixer.music.play(-1)
-    except pygame.error:
-        print(':(')
+    except pygame.error as err:
+        print('Sorry, you cannot play music :(')
+        print(err)
 
     if is_new:
         hero = Objects.Hero(base_stats, Service.create_sprite(
